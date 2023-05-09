@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -28,16 +29,18 @@ const toggleLikeTalkActionCreator = ({ talkId, userId }) => ({
 });
 
 const asyncAddTalk = ({ text, replyTo = '' }) => async (dispatch) => {
+  dispatch(showLoading());
   try {
     const talk = await api.createTalk({ text, replyTo });
     dispatch(addTalkActionCreator(talk));
   } catch (err) {
     alert(err.message);
   }
+  dispatch(hideLoading());
 };
 
 const asyncToggleLikeTalk = (talkId) => async (dispatch, getState) => {
-  // Line 42 & 43 is for better user experience using "optimistically apply action"
+  dispatch(showLoading());
   const { authUser } = getState();
   dispatch(toggleLikeTalkActionCreator({ talkId, userId: authUser.id }));
 
@@ -47,6 +50,7 @@ const asyncToggleLikeTalk = (talkId) => async (dispatch, getState) => {
     alert(err.message);
     dispatch(toggleLikeTalkActionCreator({ talkId, userId: authUser.id }));
   }
+  dispatch(hideLoading());
 };
 
 export {

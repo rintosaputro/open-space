@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -25,6 +26,7 @@ const toggleLikeTalkDetailActionCreator = (userId) => ({
 });
 
 const asyncReceiveTalkDetail = (talkId) => async (dispatch) => {
+  dispatch(showLoading());
   dispatch(clearTalkDetailActionCreator());
 
   try {
@@ -33,9 +35,11 @@ const asyncReceiveTalkDetail = (talkId) => async (dispatch) => {
   } catch (err) {
     alert(err.message);
   }
+  dispatch(hideLoading());
 };
 
 const asyncToggleLikeTalkDetail = () => async (dispatch, getState) => {
+  dispatch(showLoading());
   const { authUser, talkDetail } = getState();
   dispatch(toggleLikeTalkDetailActionCreator(authUser.id));
 
@@ -44,6 +48,7 @@ const asyncToggleLikeTalkDetail = () => async (dispatch, getState) => {
   } catch (err) {
     alert(err.message);
   }
+  dispatch(hideLoading());
 };
 
 export {
