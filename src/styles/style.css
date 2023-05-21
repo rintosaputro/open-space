@@ -26,6 +26,7 @@ body {
 .loading {
   position: sticky;
   top: 0;
+  height: 1.8px;
 }
 
 .login-page, .register-page {
