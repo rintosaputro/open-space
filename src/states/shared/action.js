@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 import { receiveTalksActionCreator } from '../talks/action';
-import { receiveUsers } from '../users/action';
+import { receiveUsersActionCreator } from '../users/action';
 
 const asyncPopulateUsersAndTalks = () => async (dispatch) => {
   dispatch(showLoading());
@@ -9,7 +9,7 @@ const asyncPopulateUsersAndTalks = () => async (dispatch) => {
     const users = await api.getAllUsers();
     const talks = await api.getAllTalks();
 
-    dispatch(receiveUsers(users));
+    dispatch(receiveUsersActionCreator(users));
     dispatch(receiveTalksActionCreator(talks));
   } catch (err) {
     alert(err.message);

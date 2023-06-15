@@ -5,7 +5,7 @@ const ActionType = {
   RECEIVE_USERS: 'RECEIVE_USERS',
 };
 
-const receiveUsers = (users) => ({
+const receiveUsersActionCreator = (users) => ({
   type: ActionType.RECEIVE_USERS,
   payload: { users },
 });
@@ -22,6 +22,6 @@ const asyncRegisterUser = ({ id, name, password }) => async (dispatch) => {
 
 export {
   ActionType,
-  receiveUsers,
+  receiveUsersActionCreator,
   asyncRegisterUser,
 };
