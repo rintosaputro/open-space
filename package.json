@@ -14,11 +14,13 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "dev": "vite",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "vitest",
     "eject": "react-scripts eject",
-    "e2e": "cypress run"
+    "e2e": "cypress run",
+    "ci:test": "vitest --no-watch && start-server-and-test start http-get://0.0.0.0:3000 e2e"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +54,7 @@
     "eslint-plugin-react": "^7.31.4",
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^22.1.0",
+    "start-server-and-test": "^2.0.0",
     "vitest": "^0.32.0"
   }
 }
